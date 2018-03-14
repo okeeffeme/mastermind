@@ -31,19 +31,36 @@ function makeCode(a) {
 
 var code = makeCode(LIBRARY);
 
+function Bull(a) {
+  console.log('running Bull');
+  let b = ["test"];
+  a = [...a];
+  c = code.join("").split("");
+  console.log(a);
+  console.log(c);
+  for (var i; i < c.length; i++) {
+    console.log('running innerBull');
+    if (a[i] === code[i]) {
+      console.log('yes ' + i);
+      b.push("x");
+    }
+  }
+  return b;
+}
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 rl.question('Make a guess ', (response) => {
-  code = code.join("");
   console.log(`You entered: ${response}`);
   console.log(`The answer: ${code}`);
-  if (response === code) {
+  if (response === code.join("")) {
     console.log(`HURRAY`);
   } else {
-    console.log(`Awww...`);
+    response = [...response];
+    var bull = Bull(response);
+    console.log(`You have ${bull}`);
   }
-  rl.close();
 });
