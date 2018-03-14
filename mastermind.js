@@ -30,22 +30,33 @@ function makeCode(a) {
 }
 
 var code = makeCode(LIBRARY);
+//var code = [5,3,2,6];
 
-function Bull(a) {
-  console.log('running Bull');
-  let b = ["test"];
+function makeCheck(a) {
+  let b = [];
   a = [...a];
   c = code.join("").split("");
-  console.log(a);
-  console.log(c);
-  for (var i; i < c.length; i++) {
-    console.log('running innerBull');
-    if (a[i] === code[i]) {
-      console.log('yes ' + i);
-      b.push("x");
+  // Bull
+  for (var i = 0; i < c.length; i++) {
+    if (a[i] == c[i]) {
+      b.push("■");
+      a[i] = "x";
+      c[i] = "x";
     }
   }
-  return b;
+  a = a.filter(i => i != "x");
+  c = c.filter(i => i != "x");
+  // Cow
+  for (var i = 0; i < a.length; i++) {
+    for (var o = 0; o < c.length; o++) {
+      if (a[i] != "x" && a[i] == c[o]) {
+        b.push("□");
+        a[i] = "x";
+        c[o] = "x";
+      }
+    }
+  }
+  return b.join(" ");
 }
 
 const rl = readline.createInterface({
@@ -60,7 +71,7 @@ rl.question('Make a guess ', (response) => {
     console.log(`HURRAY`);
   } else {
     response = [...response];
-    var bull = Bull(response);
+    var bull = makeCheck(response);
     console.log(`You have ${bull}`);
   }
 });
