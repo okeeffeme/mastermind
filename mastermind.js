@@ -42,10 +42,8 @@ rl.question('Make a guess ', (response) => {
   console.log(`The answer: ${code}`);
   if (response === code) {
     console.log(`HURRAY`);
-    return;
   } else {
     console.log(`Awww...`);
-    return;
   }
   rl.close();
 });
