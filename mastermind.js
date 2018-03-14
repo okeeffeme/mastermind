@@ -37,16 +37,15 @@ const rl = readline.createInterface({
 });
 
 rl.question('Make a guess ', (response) => {
-  response = [...response];
-  for (var i = 0; i < response.length; i++) {
-    response[i] = Number(response[i]);
-  }
+  code = code.join("");
   console.log(`You entered: ${response}`);
   console.log(`The answer: ${code}`);
   if (response === code) {
     console.log(`HURRAY`);
+    return;
   } else {
     console.log(`Awww...`);
+    return;
   }
   rl.close();
 });
