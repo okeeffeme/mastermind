@@ -25,7 +25,6 @@ function shuffle(a){
 }
 function makeCode(a) {
   var code = shuffle(a).slice(0, 4);
-  console.log(code);
   return code;
 }
 
@@ -64,14 +63,19 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.question('Make a guess ', (response) => {
-  console.log(`You entered: ${response}`);
-  console.log(`The answer: ${code}`);
-  if (response === code.join("")) {
-    console.log(`HURRAY`);
-  } else {
-    response = [...response];
-    var bull = makeCheck(response);
-    console.log(`You have ${bull}`);
-  }
+rl.question('Press enter twice to start, type close to exit ', (response) => {
+  rl.on('line', (response) => {
+    rl.setPrompt(`Make a guess `);
+    if (response === code.join("")) {
+      console.log(`HURRAY`);
+      rl.close();
+    } else if (response === 'close') {
+      rl.close();
+    }else {
+      response = [...response];
+      var bull = makeCheck(response);
+      console.log(`${response} ${bull}`);
+      rl.prompt();
+    }
+  })
 });
